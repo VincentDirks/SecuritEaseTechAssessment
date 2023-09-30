@@ -3,15 +3,20 @@ package net.dirksonline.securiteasetechassessment;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.junit.BeforeClass; import org.junit.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertEquals;
+import static org.apache.http.HttpStatus.SC_OK;
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class APITest {
-    private String baseURI = "<http://api.example.com";
+    private final String baseURI = "https://reqres.in/api";
+
     @BeforeClass
     public void setup() {
         RestAssured.baseURI = baseURI;
     }
+
     @Test
     public void testGetUsers() {
         Response response = given()
@@ -19,11 +24,17 @@ public class APITest {
                 .get("/users")
                 .then()
                 .extract().response();
+
         // Validate the response status code
-        assertEquals("Unexpected status code", 200, response.getStatusCode());
+        assertThat(response.getStatusCode())
+                .as("Response Status Code")
+                .isEqualTo(SC_OK);
 
         // Validate the response content type
-        assertEquals("Unexpected content type", ContentType.JSON.toString(), response.getContentType());
+        assertThat(response.getContentType())
+                .as("Response Content Type")
+                .contains(ContentType.JSON.toString());
+
         // Validate the response schema (example: user_id, username, email)
         // Example assertion:
         // assertNotNull(response.jsonPath().getString("user_id"), "user_id not found in response");
