@@ -35,6 +35,12 @@ public class APITest {
                 .as("Response Content Type")
                 .contains(ContentType.JSON.toString());
 
+        UserListPage userListPage = response.as(UserListPage.class);
+
+        assertThat(userListPage)
+                .as("Response contains a valid userListPage response object")
+                .isInstanceOf(UserListPage.class);
+
         // Validate the response schema (example: user_id, username, email)
         // Example assertion:
         // assertNotNull(response.jsonPath().getString("user_id"), "user_id not found in response");
