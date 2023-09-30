@@ -1,0 +1,57 @@
+Quality Engineer Test
+This is a practical test to understand your ability to create a test for an API. following the below instructions:
+API Test:
+Code Test: API Testing with Java, Junit, and RestAssured
+Scenario: Automate the testing of a basic API functionality for a sample RESTful API.
+Requirements:
+1. Use Java, Junit, and the RestAssured library for API test automation.
+2. The sample API endpoint is: https://reqres.in/api/users?page=2
+3. The API returns a list of users in JSON format.
+Tasks:
+1. Write a test script that automates the following scenarios:
+Retrieve the list of users from the API.
+Validate the response status code, content type, and schema.
+Perform assertions to verify the correctness of the response data.
+2. Use appropriate assertions to validate the test results.
+3. Provide comments to explain the purpose of each test step.
+Sample Code Skeleton:
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.junit.BeforeClass; import org.junit.Test;
+import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
+public class APITest {
+private String baseURI = "<http://api.example.com";>
+@BeforeClass
+public void setup() {
+ RestAssured.baseURI = baseURI;
+}
+@Test
+public void testGetUsers() {
+ Response response = given()
+ .when()
+ .get("/users")
+ .then()
+ .extract().response();
+ // Validate the response status code
+ assertEquals(response.getStatusCode(), 200, "Unexpected status code");
+}
+Instructions:
+1. Set up a Java project with TestNG and RestAssured dependencies.
+2. Create a Java class and copy the provided sample code skeleton.
+3. Update the baseURI to match the API endpoint.
+4. Run the test class and ensure it executes without errors.
+5. Create a test to specifically validate that ID 11 is in the array
+6. Copy all code and results of the executed tests and send in Zip file
+Nice to haves:
+1. SpringBoot
+2. DevContainers
+3. Reporting
+
+ // Validate the response content type
+ assertEquals(response.getContentType(), ContentType.JSON.toString(), "Unexpected content type");
+ // Validate the response schema (example: user_id, username, email)
+ // Example assertion:
+ // assertNotNull(response.jsonPath().getString("user_id"), "user_id not found in response");
+}
