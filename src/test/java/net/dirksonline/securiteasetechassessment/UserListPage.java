@@ -1,5 +1,6 @@
 package net.dirksonline.securiteasetechassessment;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -13,7 +14,9 @@ public class UserListPage {
     public ArrayList<User> data;
     public Support support;
 
-    @Data public static class User {
+    @Data
+    @Builder
+    public static class User {
         public int id;
         public String email;
         public String first_name;
