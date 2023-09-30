@@ -19,6 +19,7 @@
     <option name="TEST_SEARCH_SCOPE">
       <value defaultName="moduleWithDependencies" />
     </option>
+    <option name="USE_DEFAULT_REPORTERS" value="true" />
     <option name="PROPERTIES_FILE" value="" />
     <properties />
     <listeners />

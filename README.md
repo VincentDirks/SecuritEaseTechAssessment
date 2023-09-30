@@ -22,6 +22,10 @@ These steps were previously done on my laptop
 6. Add dependencies for testng, rest-assured, assertj, junit to the pom. 
 7. Create New java class APITest and copy skeleton code from instructions. 
 8. Swap to using testng, update baseURI, try to run the test, fix any issues encountered. 
+9. Created a pojo for the response using online JSON to pojo converter and the lombok @Data annotation. 
+10. Transform the response to the new pojo, and assert it was successful
+11. Using the @Builder annotation, create a replica of one of the user records, and then assert that the response contains the expected user record.
+12. Add a new scenario to fetch the second page of the user list, and assert that id=11 is present and correct. 
 
 Notes:
 * There were a few issues that needed fixing when I copied the skeleton code
@@ -30,3 +34,5 @@ Notes:
   * JUnit assertion needed it's input parameters to be re-arranged to `assertEquals(msg,expected,actual)`
 * There were some CVE's reported for spring and testng dependencies when I added them to the pom. I investigated, but I couldn't quickly figure out how to fix them and was keen to ask a more experienced java dev about them. 
 * I swapped to using AssertJ - a personal preference
+* I am not deeply experienced (yet) with pojo's, lombok, jackson etc. for evaluating the JSON schema of the response. After a little investigation it seems that the current implementation confirms all parts in the JSON response are present in the pojo, but does not seem to verify that all attributes of the pojo are present in the response. I feel there will be some settings (annotations) to fix this. 
+* I feel that some of the validations I've added are a bit brittle and hardwire the expected data. I would be keen to extract these to external files per environment.
