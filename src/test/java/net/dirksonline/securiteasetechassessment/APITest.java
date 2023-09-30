@@ -57,8 +57,49 @@ public class APITest {
         )
                 .as("Response contains George user")
                 .isEqualTo(user);
-
-        // Example assertion:
-        // assertNotNull(response.jsonPath().getString("user_id"), "user_id not found in response");
     }
+
+    @Test(description = "Fetch second page of list of users, and it contains another user George")
+    public void testGetUsersPage2() {
+        Response response = given()
+                .param("page",2)
+                .when()
+                .get("/users")
+                .then()
+                .extract().response();
+
+        // Verify the response status code
+        assertThat(response.getStatusCode())
+                .as("Response Status Code")
+                .isEqualTo(SC_OK);
+
+        // Verify the response content type
+        assertThat(response.getContentType())
+                .as("Response Content Type")
+                .contains(ContentType.JSON.toString());
+
+        // Verify the response schema
+        UserListPage userListPage = response.as(UserListPage.class);
+        assertThat(userListPage)
+                .as("Response contains a valid userListPage response object")
+                .isInstanceOf(UserListPage.class);
+
+        // Verify the "George" record is returned
+        UserListPage.User user = UserListPage.User.builder()
+                .id(11)
+                .first_name("George")
+                .last_name("Edwards")
+                .email("george.edwards@reqres.in")
+                .avatar("https://reqres.in/img/faces/11-image.jpg")
+                .build();
+
+        assertThat(userListPage.data.stream()
+                .filter( u -> u.first_name.equals("George"))
+                .findAny()
+                .orElseThrow()
+        )
+                .as("Second page response contains another George user")
+                .isEqualTo(user);
+    }
+
 }
