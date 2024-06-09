@@ -1,9 +1,6 @@
 # Vincent's SecuritEase Tech Assessment
 
-|         |                                               |
-|---------|-----------------------------------------------|
-| Started | 30-sep-2023                                   |
-| For     | [Mark Sage](mailto:mark.sage@securitease.com) |
+30-Sep-2023
 
 ### Foreword
 I'm not hugely familiar with Java/IntelliJ etc. I've played a little bit with java in the past, but only recently started contributing to an existing Java/RestAssured test suite at work. 
