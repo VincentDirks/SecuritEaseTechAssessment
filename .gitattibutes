@@ -1,1 +1,8 @@
 test-output/** linguist-generated
+test-output linguist-generated
+/test-output/ linguist-generated
+*.html linguist-generated
+test-output/** linguist-generated
+test-output/** linguist-generated
+test-output/** linguist-generated
+test-output/** linguist-generated
