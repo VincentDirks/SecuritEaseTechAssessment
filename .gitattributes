@@ -3,6 +3,3 @@ test-output linguist-generated
 /test-output/ linguist-generated
 *.html linguist-generated
 *.HTML linguist-generated
-test-output/** linguist-generated
-test-output/** linguist-generated
-test-output/** linguist-generated
